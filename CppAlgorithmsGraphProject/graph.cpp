@@ -9,7 +9,7 @@ graph::graph(int vertexes, int edges)
 }
 
 graph::graph(std::vector<std::string> vertex_names)
-	: _vertexes{ vertex_names.size() }, _edges{}
+	: _vertexes{ (int)vertex_names.size() }, _edges{}
 {
 	for (auto name : vertex_names)
 		_vertex_names.push_back(name);

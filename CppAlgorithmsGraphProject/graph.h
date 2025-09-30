@@ -4,6 +4,7 @@
 
 class graph
 {
+protected:
 	int _vertexes;
 	int _edges;
 
@@ -17,8 +18,8 @@ public:
 	const int& vertexes();
 	const int& edges();
 
-	virtual void vertex_add() = 0;
-	virtual void edge_add() = 0;
+	/*virtual void vertex_add() = 0;
+	virtual void edge_add() = 0;*/
 
 	virtual ~graph() {}
 };
