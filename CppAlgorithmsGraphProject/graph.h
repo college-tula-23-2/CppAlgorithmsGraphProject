@@ -2,18 +2,20 @@
 #include <string>
 #include <vector>
 
+typedef std::vector<std::string> names;
+
 class graph
 {
 protected:
 	int _vertexes;
 	int _edges;
 
-	std::vector<std::string> _vertex_names;
+	names _vertex_names;
 public:
 
 	graph();
 	graph(int vertexes, int edges);
-	graph(std::vector<std::string> vertex_names);
+	graph(names vertex_names);
 
 	const int& vertexes();
 	const int& edges();

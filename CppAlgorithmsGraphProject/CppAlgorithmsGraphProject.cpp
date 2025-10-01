@@ -4,7 +4,7 @@
 
 int main()
 {
-    adjacency_matrix graph(5);
+    adjacency_matrix graph({"aaaaa", "bbb", "ccccccc"});
 
     std::cout << graph << "\n";
 }

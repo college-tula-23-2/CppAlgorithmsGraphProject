@@ -8,7 +8,7 @@ graph::graph(int vertexes, int edges)
 	_vertex_names.resize(_vertexes, "");
 }
 
-graph::graph(std::vector<std::string> vertex_names)
+graph::graph(names vertex_names)
 	: _vertexes{ (int)vertex_names.size() }, _edges{}
 {
 	for (auto name : vertex_names)

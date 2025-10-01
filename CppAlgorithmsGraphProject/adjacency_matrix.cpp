@@ -16,7 +16,7 @@ adjacency_matrix::adjacency_matrix(int vertexes)
 	this->create_matrix();
 }
 
-adjacency_matrix::adjacency_matrix(std::vector<std::string> vertex_names)
+adjacency_matrix::adjacency_matrix(names vertex_names)
 	: graph(vertex_names)
 {
 	this->create_matrix();

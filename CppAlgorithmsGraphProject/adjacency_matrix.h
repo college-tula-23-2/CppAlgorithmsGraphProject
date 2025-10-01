@@ -16,7 +16,7 @@ protected:
 public:
 	adjacency_matrix();
 	adjacency_matrix(int vertexes);
-	adjacency_matrix(std::vector<std::string> vertex_names);
+	adjacency_matrix(names vertex_names);
 
 	friend std::ostream& operator<<(
 		std::ostream& out, const adjacency_matrix& graph);
