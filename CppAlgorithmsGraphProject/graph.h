@@ -20,8 +20,11 @@ public:
 	const int& vertexes();
 	const int& edges();
 
-	/*virtual void vertex_add() = 0;
-	virtual void edge_add() = 0;*/
+	virtual void add_edge(int vertex_one, int vertex_two) = 0;
+	virtual void add_vertex() = 0;
+
+	virtual void remove_edge(int vertex_one, int vertex_two) = 0;
+	virtual void remove_vertex(int vertex) = 0;
 
 	virtual ~graph() {}
 };

@@ -22,6 +22,109 @@ adjacency_matrix::adjacency_matrix(names vertex_names)
 	this->create_matrix();
 }
 
+void adjacency_matrix::add_edge(int vertex_one, int vertex_two)
+{
+	if (vertex_one < 0 || vertex_one >= _vertexes
+		|| vertex_two < 0 || vertex_two >= _vertexes)
+		throw std::exception("index of a vertex out of range");
+
+	_matrix[vertex_one][vertex_two] = 1;
+	_matrix[vertex_two][vertex_one] = 1;
+
+	_edges++;
+}
+
+void adjacency_matrix::add_edge(std::string vertex_one, int vertex_two)
+{
+	int index_one = std::ranges::find(_vertex_names, vertex_one) - _vertex_names.begin();
+	this->add_edge(index_one, vertex_two);
+}
+
+void adjacency_matrix::add_edge(int vertex_one, std::string vertex_two)
+{
+	int index_two = std::ranges::find(_vertex_names, vertex_two) - _vertex_names.begin();
+	this->add_edge(vertex_one, index_two);
+}
+
+void adjacency_matrix::add_edge(std::string vertex_one, std::string vertex_two)
+{
+	int index_one = std::ranges::find(_vertex_names, vertex_one) - _vertex_names.begin();
+	int index_two = std::ranges::find(_vertex_names, vertex_two) - _vertex_names.begin();
+
+	this->add_edge(index_one, index_two);
+}
+
+void adjacency_matrix::add_vertex()
+{
+	_vertexes++;
+
+	_matrix.resize(_vertexes);
+	for (int i{}; i < _vertexes; i++)
+		_matrix[i].resize(_vertexes, 0);
+
+	_vertex_names.resize(_vertexes, "");
+}
+
+void adjacency_matrix::add_vertex(std::string vertex_name)
+{
+	this->add_vertex();
+	_vertex_names.back() = vertex_name;
+}
+
+void adjacency_matrix::remove_edge(int vertex_one, int vertex_two)
+{
+	if (vertex_one < 0 || vertex_one >= _vertexes
+		|| vertex_two < 0 || vertex_two >= _vertexes)
+		throw std::exception("index of a vertex out of range");
+
+	_matrix[vertex_one][vertex_two] = 0;
+	_matrix[vertex_two][vertex_one] = 0;
+
+	_edges--;
+}
+
+void adjacency_matrix::remove_edge(std::string vertex_one, int vertex_two)
+{
+	int index_one = std::ranges::find(_vertex_names, vertex_one) - _vertex_names.begin();
+	this->remove_edge(index_one, vertex_two);
+}
+
+void adjacency_matrix::remove_edge(int vertex_one, std::string vertex_two)
+{
+	int index_two = std::ranges::find(_vertex_names, vertex_two) - _vertex_names.begin();
+	this->remove_edge(vertex_one, index_two);
+}
+
+void adjacency_matrix::remove_edge(std::string vertex_one, std::string vertex_two)
+{
+	int index_one = std::ranges::find(_vertex_names, vertex_one) - _vertex_names.begin();
+	int index_two = std::ranges::find(_vertex_names, vertex_two) - _vertex_names.begin();
+
+	this->remove_edge(index_one, index_two);
+}
+
+void adjacency_matrix::remove_vertex(int vertex)
+{
+	if (vertex < 0 || vertex >= _vertexes)
+		throw std::exception("index of a vertex out of range");
+
+	_matrix.erase(_matrix.begin() + vertex);
+	for (int i{}; i < _vertexes - 1; i++)
+		_matrix[i].erase(_matrix[i].begin() + vertex);
+
+	_vertex_names.erase(_vertex_names.begin() + vertex);
+
+	_vertexes--;
+}
+
+void adjacency_matrix::remove_vertex(std::string vertex)
+{
+	int index = std::ranges::find(_vertex_names, vertex) - _vertex_names.begin();
+	this->remove_vertex(index);
+}
+
+
+
 std::ostream& operator<<(std::ostream& out, const adjacency_matrix& graph)
 {
 
